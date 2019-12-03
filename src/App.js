@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import './App.scss';
+import DynamicForm from "./components/dynamicform";
+import { Route, Switch} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+    
+    }
+  };
+  componentDidMount() {
+
+    fetch('/homedata.json').then(res=>res.json()).then(data =>{this.setState({jsondata:data,todos: data.content.data}); })
+  }
+  render() {
+    let dj;
+    if(this.state.jsondata)
+    {
+    dj = this.state.jsondata.content;
+    }
+    return (
+      <React.Fragment>
+        <Switch>
+            
+            {dj && 
+            <Route exact path="/home" render={(props) => <DynamicForm {...props} d={dj} />}></Route>
+            }
+            {dj && 
+            <Route exact path="/home/:formid" render={(props) => <DynamicForm {...props} d={dj} />}></Route>
+            }
+            
+          </Switch>
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
