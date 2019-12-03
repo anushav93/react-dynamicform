@@ -1,8 +1,4 @@
 import React, {Component} from "react";
-// import ReactTypingEffect from "react-typing-effect";
-// import Axios from "axios";
-// import { breakStatement } from "@babel/types";
-
 
 class DynamicForm extends Component {
   constructor(props) {
@@ -77,13 +73,10 @@ e.preventDefault();
       <div className="container index-page text-left">
         <div className="row h-100">
           <div className="col-12 my-auto">
-            <h1 className="">
-            
+            <h1 className="text-center my-5">
+                React Dynamic form
             </h1>
-            {/* <Link to="/about" className="btn btn-primary mt-5" >
-              Know More About Me
-      </Link> */}
-           
+         
 
         
           </div>
